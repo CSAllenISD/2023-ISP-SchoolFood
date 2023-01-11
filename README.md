@@ -6,3 +6,6 @@
 
 [HamzaEbeida](https://github.com/HamzaEbeida) | Project Manager
 ~[Digital Portfolio](https://www.codermerlin.com/users/hamza-ebeida/Digital%20Portfolio/index.html)
+
+[Rupak-B](https://github.com/Rupak-B) | Product Manager
+~[Digital Portfolio](https://www.codermerlin.com/users/rupak-bhattacharya/Digital%20Portfolio/index.html)
