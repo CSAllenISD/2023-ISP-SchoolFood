@@ -10,5 +10,5 @@
 [Rupak-B](https://github.com/Rupak-B) | Product Manager
 ~[Digital Portfolio](https://www.codermerlin.com/users/rupak-bhattacharya/Digital%20Portfolio/index.html)
 
-[Darsh R](https://github.com/DarshRA) | QA Engineer 
+[DarshRA](https://github.com/DarshRA) | QA Engineer 
 ~[Digital Portfolio](https://www.codermerlin.com/users/darsh-radadia/Digital%20Portfolio/index.html)
