@@ -1,4 +1,4 @@
-package com.schoolfood.ui.notifications
+package com.schoolfood.ui.previousordered
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.schoolfood.databinding.FragmentNotificationsBinding
 
-class NotificationsFragment : Fragment() {
+class PreviousOrderedFragment : Fragment() {
 
     private var _binding: FragmentNotificationsBinding? = null
 
@@ -22,14 +22,14 @@ class NotificationsFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View {
-        val notificationsViewModel =
-                ViewModelProvider(this).get(NotificationsViewModel::class.java)
+        val previousOrderedViewModel =
+                ViewModelProvider(this).get(PreviousOrderedViewModel::class.java)
 
         _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textNotifications
-        notificationsViewModel.text.observe(viewLifecycleOwner) {
+        previousOrderedViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root
