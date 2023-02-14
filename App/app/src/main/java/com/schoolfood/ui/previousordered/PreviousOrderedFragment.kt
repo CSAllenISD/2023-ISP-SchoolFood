@@ -18,18 +18,18 @@ class PreviousOrderedFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
         val previousOrderedViewModel =
-                ViewModelProvider(this).get(PreviousOrderedViewModel::class.java)
+            ViewModelProvider(this)[PreviousOrderedViewModel::class.java]
 
         _binding = FragmentPreviousorderedBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textNotifications
-        previousOrderedViewModel.text.observe(viewLifecycleOwner) {
+        val textView: TextView = binding.textPrevOrdered
+        previousOrderedViewModel.text.observeForever {
             textView.text = it
         }
         return root
