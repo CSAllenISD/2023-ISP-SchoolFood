@@ -31,13 +31,13 @@
             android:id="@+id/header_title"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:layout_marginEnd="211dp"
             android:text="Profile"
             android:textAlignment="center"
-            android:textFontWeight="700"
-            android:textSize="32sp"
-            android:layout_centerInParent="true"
-        />
+            android:textColor="@color/text"
+            android:fontFamily="sans-serif-black"
+            android:textSize="32sp" />
     </RelativeLayout>
 
     <LinearLayout
@@ -45,36 +45,34 @@
         android:layout_width="match_parent"
         android:layout_height="500dp"
         android:divider="@drawable/empty_tall_divider"
+        android:orientation="vertical"
         android:showDividers="middle"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:orientation="vertical">
+        app:layout_constraintTop_toBottomOf="@+id/header">
 
         <RelativeLayout
             android:id="@+id/profile_money"
             android:layout_width="match_parent"
             android:layout_height="100dp"
+            android:layout_margin="5dp"
             android:background="@drawable/layout_bg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_margin="5dp"
-            >
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/profile_cover_image"
-                android:layout_width="70dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true"
-                android:src="@drawable/profile_user"
-                android:contentDescription="Money"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginLeft="20dp"
                 android:layout_marginVertical="5dp"
-                />
+                android:layout_marginLeft="20dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="Money"
+                android:scaleType="fitCenter"
+                android:src="@drawable/money" />
 
             <TextView
                 android:id="@+id/profiler_money_text"
@@ -84,12 +82,12 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="4dp"
                 android:layout_toEndOf="@+id/profile_cover_image"
+                android:fontFamily="sans-serif-black"
                 android:gravity="center"
                 android:text="Current Balance"
-                android:fontFamily="sans-serif-black"
                 android:textAlignment="center"
-                android:textSize="30sp"
-                android:textColor="@color/alt_text"/>
+                android:textColor="@color/text"
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/profiler_money_amt"
@@ -97,7 +95,7 @@
                 android:layout_height="40dp"
                 android:layout_below="@+id/profiler_money_text"
                 android:layout_marginStart="11dp"
-                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="12dp"
                 android:layout_toEndOf="@+id/profile_cover_image"
                 android:fontFamily="sans-serif-black"
                 android:gravity="center"
@@ -111,43 +109,55 @@
             android:id="@+id/profile_times"
             android:layout_width="match_parent"
             android:layout_height="100dp"
+            android:layout_margin="5dp"
             android:background="@drawable/layout_bg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_margin="5dp"
-            >
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@id/profile_cover_image2"
-                android:layout_width="70dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true"
-                android:src="@drawable/profile_user"
-                android:contentDescription="@string/pizzahut_logo"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginLeft="20dp"
                 android:layout_marginVertical="5dp"
-                />
+                android:layout_marginLeft="20dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/pizzahut_logo"
+                android:scaleType="fitCenter"
+                android:src="@drawable/counter" />
 
             <TextView
+                android:id="@+id/profiler_times_text"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:layout_alignParentTop="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="-82dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginEnd="4dp"
-                android:gravity="center"
-                android:text="Times Ordered"
                 android:layout_toEndOf="@+id/profile_cover_image2"
                 android:fontFamily="sans-serif-black"
+                android:gravity="center"
+                android:text="Times Ordered"
                 android:textAlignment="center"
-                android:textSize="30sp"
-                android:textColor="@color/alt_text"/>
+                android:textColor="@color/text"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/profiler_times_amt"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/profiler_times_text"
+                android:layout_marginStart="11dp"
+                android:layout_marginBottom="12dp"
+                android:layout_toEndOf="@+id/profile_cover_image2"
+                android:fontFamily="sans-serif-black"
+                android:gravity="center"
+                android:text="74"
+                android:textAlignment="center"
+                android:textColor="@color/green_text"
+                android:textSize="18sp" />
 
         </RelativeLayout>
 
