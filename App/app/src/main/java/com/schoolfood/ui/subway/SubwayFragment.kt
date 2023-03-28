@@ -1,18 +1,14 @@
 package com.schoolfood.ui.home
 
-import android.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import com.schoolfood.databinding.FragmentHomeBinding
 
-
-class HomeFragment : Fragment() {
+class SubwayFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
 
@@ -25,15 +21,10 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
+        val subwayViewModel =
             ViewModelProvider(this)[SubwayViewModel::class.java]
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-
-        val subwayButton = _binding.homeSubway;
-        subwayButton.setOnClickListener {
-            findNavController().navigate(R.id.navigation_subway)
-        }
 
         return binding.root
     }
