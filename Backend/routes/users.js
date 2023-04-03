@@ -1,14 +1,19 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../db');
+var { users } = require('../db');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  db.collection('mammals').find().toArray((err, result) => {
-    if (err) throw err
+  
+  console.log("REQUESTED");
 
-    res.send(result);
-  })
+  users.find({}, function(err, result) {    
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(result);
+    }
+  });
 
 });
 
