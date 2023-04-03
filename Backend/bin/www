@@ -9,6 +9,8 @@ var app = require('../app');
 var debug = require('debug')('backend:server');
 var http = require('http');
 
+db.connect().catch(err => console.log(err)).then(() => console.log("DB Connected!"));
+
 /**
  * Get port from environment and store in Express.
  */
