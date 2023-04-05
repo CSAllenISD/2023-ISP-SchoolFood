@@ -5,7 +5,7 @@ var { users } = require('../db');
 /* GET users listing. */
 router.get('/', async function(req, res, next) {
   
-  console.log("REQUESTED");
+  console.log("REQUESTED users/");
 
   try {
     const allUsers = await users.find();
