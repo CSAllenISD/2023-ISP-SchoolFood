@@ -1476,3 +1476,49 @@ main{
         margin-bottom:0
     }
 }
+
+.side-popup {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 35vw;
+    min-width: 300px;
+    min-height: 150px;
+    padding: 1rem;
+    z-index: 999;
+
+    display: grid;
+    grid-template-areas: "left head head head"
+               "left main main main"
+               "foot foot foot foot";
+
+    transform: translateX(100%);
+
+    border-bottom-left-radius: 1rem;
+
+    background: #2C3039;
+    box-shadow:0 24px 48px rgba(21,24,29,0.24);
+
+    transition: transform 1s;
+}
+
+.side-popup h1.popup-icon {
+    grid-area: left;
+    padding: 1rem;
+}
+
+.side-popup h1.popup-title {
+    grid-area: head;
+}
+
+.side-popup h3.popup-text {
+    grid-area: main;
+}
+
+.side-popup img.popup-footer {
+    grid-area: foot;
+}
+
+.side-popup.shown {
+    transform: translateX(0);
+}

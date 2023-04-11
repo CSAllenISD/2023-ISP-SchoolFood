@@ -25,7 +25,11 @@ router.get('/about', function(req, res, next) {
 });
 
 router.get('/contact', function(req, res, next) {
-  res.render('contact', { title: 'PreOrder' });
+  res.render('contact', { title: 'Contact', didSubmit: false });
+});
+
+router.post('/contact', function(req, res, next) {
+  res.render('contact', { title: 'Contact', didSubmit: true });
 });
 
 module.exports = router;
