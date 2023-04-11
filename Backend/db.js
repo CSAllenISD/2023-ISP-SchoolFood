@@ -14,7 +14,17 @@ const usersSchema = new mongoose.Schema({
 
 const users = mongoose.model('Users', usersSchema);
 
+const contactSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  subject: String,
+  content: String
+});
+
+const contact = mongoose.model('Contact', contactSchema);
+
 module.exports = {
   connect: connect,
-  users: users
+  users: users,
+  contact: contact
 };

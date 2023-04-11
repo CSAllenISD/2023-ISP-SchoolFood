@@ -81,19 +81,19 @@ html.no-js(lang='en')
                       ul.pricing-table-features.list-reset.text-xs
                         li
                           p Name:
-                          input(type="text")
+                          input(type="text", name="name")
                         |                                             
                         li
                           p Email:
-                          input(type="email")
+                          input(type="email", name="email")
                         |                                             
                         li
                           p Subject:
-                          input(type="text")
+                          input(type="text", name="subject")
                         |                                             
                         li.contact
                           p Content:
-                          textarea(style="height: 10vh;, width: 100%;")
+                          textarea(style="height: 10vh;, width: 100%;", name="content")
                     |                                     
                     .pricing-table-cta.mb-8
                       input.button.button-primary.button-shadow.button-block(type='submit') Submit

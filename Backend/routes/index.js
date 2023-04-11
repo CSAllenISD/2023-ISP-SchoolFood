@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const { contact } = require('../db');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -28,8 +29,33 @@ router.get('/contact', function(req, res, next) {
   res.render('contact', { title: 'Contact', didSubmit: false });
 });
 
-router.post('/contact', function(req, res, next) {
-  res.render('contact', { title: 'Contact', didSubmit: true });
+router.post('/contact', async function(req, res, next) {
+  console.log("Requested POST contact");
+
+  var errors = false;
+  if (!req.body.name || !req.body.subject || !req.body.content) errors = true;
+  if (!req.body.email || !req.body.email.includes("@")) errors = true;
+
+  if( !errors ) {
+    // No errors were found.  Passed Validation!
+    console.log("No errors!");
+
+    var contactDetails = new contact({
+      name: req.body.name,
+      email: req.body.email,
+      subject: req.body.subject,
+      content: req.body.content
+    });
+
+    try {
+      await contactDetails.save()
+      res.render('contact', { title: 'Contact', didSubmit: true });
+    } catch(err) {
+      console.error(err);
+    }
+  } else {
+    res.render('contact', { title: 'Contact', didSubmit: false });
+  }
 });
 
 module.exports = router;
