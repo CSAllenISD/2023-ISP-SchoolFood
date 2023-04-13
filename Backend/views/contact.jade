@@ -24,7 +24,7 @@ html.no-js(lang='en')
             .brand.header-brand
               h1.m-0
                 a(href='#')
-                  img.header-logo-image(src='images/logo.svg', alt='Logo')
+                  img.header-logo-image(src='images/logo.png', width='64', height='64', style="border-radius: 50%;", alt='Logo')
       |
       div.side-popup
         h1.popup-icon ✓
@@ -103,8 +103,7 @@ html.no-js(lang='en')
           .site-footer-inner
             .brand.footer-brand
               a(href='./')
-                img.header-logo-image(src='images/logo.svg', alt='Logo')
-            |                     
+                img.header-logo-image(src='images/logo.png', width='48', height='48', style="border-radius: 50%;", alt='Logo')            |                     
             ul.footer-links.list-reset
               li
                 a(href='./') Home
@@ -136,7 +135,7 @@ html.no-js(lang='en')
             |                     
             .footer-copyright &copy; 2023 SchoolFood, all rights reserved
     |     
-    script(src='js/main.min.js')
+    script(src='js/main.js')
     script. 
       if (#{didSubmit}) {
         setTimeout(() => {

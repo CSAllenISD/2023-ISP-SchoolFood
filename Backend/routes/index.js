@@ -40,6 +40,13 @@ router.post('/contact', async function(req, res, next) {
     // No errors were found.  Passed Validation!
     console.log("No errors!");
 
+    const results = await contact.find({ name: req.body.name, email: req.body.email, subject: req.body.subject, content: req.body.content });
+    if (results.length) {
+      // Already submitted!
+      res.render('contact', { title: 'Contact', didSubmit: false });
+      return;
+    }
+
     var contactDetails = new contact({
       name: req.body.name,
       email: req.body.email,
