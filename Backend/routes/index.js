@@ -59,6 +59,7 @@ router.post('/contact', async function(req, res, next) {
       res.render('contact', { title: 'Contact', didSubmit: true });
     } catch(err) {
       console.error(err);
+      res.render('contact', { title: 'Contact', didSubmit: false });
     }
   } else {
     res.render('contact', { title: 'Contact', didSubmit: false });
