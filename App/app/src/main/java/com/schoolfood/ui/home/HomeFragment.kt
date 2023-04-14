@@ -26,13 +26,14 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val homeViewModel =
-            ViewModelProvider(this)[SubwayViewModel::class.java]
+            ViewModelProvider(this)[HomeViewModel::class.java]
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        val subwayButton = _binding.homeSubway;
+        val subwayButton = binding.homeSubway;
         subwayButton.setOnClickListener {
-            findNavController().navigate(R.id.navigation_subway)
+            val action = HomeFragmentDirections.actionNavigationHomeToNavigationdSubway()
+            findNavController().navigate(action)
         }
 
         return binding.root

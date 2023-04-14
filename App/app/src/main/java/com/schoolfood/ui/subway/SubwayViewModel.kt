@@ -1,4 +1,4 @@
-package com.schoolfood.ui.home
+package com.schoolfood.ui.subway
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

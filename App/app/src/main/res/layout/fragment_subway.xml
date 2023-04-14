@@ -6,16 +6,28 @@
     android:layout_height="match_parent"
     android:background="@color/main_bg"
     android:id="@+id/subway_main"
-    tools:context=".ui.home.SubwayFragment">
+    tools:context=".ui.subway.SubwayFragment">
 
     <RelativeLayout
         android:id="@+id/subway_title"
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_margin="0dp"
-        android:background="@drawable/layout_bg"
+        android:background="@drawable/rounded_header"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/back_btn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp"
+            android:src="?attr/homeAsUpIndicator"
+            android:contentDescription="Back"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"/>
 
         <ImageView
             android:id="@+id/cover_image_subway"
@@ -23,9 +35,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginVertical="5dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginEnd="20dp"
             android:adjustViewBounds="true"
             android:contentDescription="@string/subway_logo"
             android:scaleType="fitCenter"
@@ -36,11 +49,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="-82dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="4dp"
-            android:layout_toEndOf="@+id/cover_image_subway"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="1dp"
             android:fontFamily="sans-serif-black"
             android:gravity="center"
             android:text="Subway"
@@ -56,10 +69,10 @@
         android:layout_width="match_parent"
         android:layout_height="500dp"
         android:divider="@drawable/empty_tall_divider"
+        android:orientation="vertical"
         android:showDividers="middle"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:orientation="vertical">
+        app:layout_constraintTop_toBottomOf="@+id/subway_title">
 
         <RelativeLayout
             android:id="@+id/ham_sandwich"

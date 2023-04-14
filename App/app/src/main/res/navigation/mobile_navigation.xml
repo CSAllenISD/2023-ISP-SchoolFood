@@ -7,9 +7,13 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.schoolfood.ui.home.SubwayFragment"
+        android:name="com.schoolfood.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_navigationd_subway"
+            app:destination="@id/navigationd_subway" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_profile"
@@ -26,6 +30,6 @@
     <fragment
         android:id="@+id/navigationd_subway"
         android:name="com.schoolfood.ui.subway.SubwayFragment"
-        android:label="@string/title_prevordered"
-        tools:layout="@layout/fragment_previousordered" />
+        android:label="@string/title_subway"
+        tools:layout="@layout/fragment_subway" />
 </navigation>
