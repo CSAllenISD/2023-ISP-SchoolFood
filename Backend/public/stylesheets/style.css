@@ -1309,9 +1309,20 @@ button,input,select,textarea,label{
 .pricing-table-features li{
     display:flex;
     align-items:center;
-    padding:14px 0
+    padding:14px 0;
+    flex-direction: row;
 }
+
+.pricing-table-features p {
+    min-width: 100px;
+}
+
+#errorDiv {
+    color: red;
+}
+
 .pricing-table-features li input,textarea {
+    flex: 1;
     background: none;
     margin: 8px;
     border: none;
@@ -1321,7 +1332,7 @@ button,input,select,textarea,label{
 .pricing-table-features li input:focus {
     border-bottom: 2px solid whitesmoke;
 }
-.pricing-table-features li::before{
+.pricing-table-features li.check::before{
     content:'';
     width:16px;
     height:12px;
