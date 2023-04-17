@@ -25,38 +25,6 @@ router.get('/about', function(req, res, next) {
   res.render('about', { title: 'PreOrder' });
 });
 
-router.post('/about', async function(req, res, next) {
-  console.log("Requested POST about");
-
-
-  var errors = false;
-  if (!req.body.name || !req.body.subject || !req.body.content) errors = true;
-  if (!req.body.email || !req.body.email.includes("@")) errors = true;
-
-
-  if( !errors ) {
-    // No errors were found.  Passed Validation!
-    console.log("No errors!");
-
-
-    const results = await about.find({ name: req.body.name, email: req.body.email, subject: req.body.subject, content: req.body.content });
-    if (results.length) {
-      // Already submitted!
-      res.render('about', { title: 'about', didSubmit: false });
-      return;
-    }
-    try {
-      await aboutDetails.save()
-      res.render('about', { title: 'about', didSubmit: true });
-    } catch(err) {
-      console.error(err);
-      res.render('about', { title: 'about', didSubmit: false });
-    }
-  } else {
-    res.render('about', { title: 'about', didSubmit: false });
-  }
-});
-
 router.get('/contact', function(req, res, next) {
   res.render('contact', { title: 'Contact', didSubmit: false });
 });
