@@ -4,12 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.slider.Slider
 import com.schoolfood.databinding.FragmentCustomizeBinding
-import com.schoolfood.databinding.FragmentHomeBinding
 
 class CustomizeFragment : Fragment() {
 
@@ -28,6 +29,11 @@ class CustomizeFragment : Fragment() {
             ViewModelProvider(this)[CustomizeViewModel::class.java]
 
         _binding = FragmentCustomizeBinding.inflate(inflater, container, false)
+
+        val backBtn : ImageButton = binding.backBtn
+        backBtn.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
         val sliderValues = listOf("None", "Light", "Regular", "Extra");
 

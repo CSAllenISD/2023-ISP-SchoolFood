@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/main_bg"
     android:id="@+id/subway_main"
-    tools:context=".ui.subway.SubwayFragment">
+    tools:context=".ui.restaurants.RestaurantsFragment">
 
     <RelativeLayout
         android:id="@+id/subway_title"

@@ -29,7 +29,17 @@
 
     <fragment
         android:id="@+id/navigationd_subway"
-        android:name="com.schoolfood.ui.subway.SubwayFragment"
+        android:name="com.schoolfood.ui.restaurants.RestaurantsFragment"
         android:label="@string/title_subway"
-        tools:layout="@layout/fragment_subway" />
+        tools:layout="@layout/fragment_resteraunt" >
+        <action
+            android:id="@+id/action_navigationd_subway_to_navigation_customize"
+            app:destination="@id/navigation_customize" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_customize"
+        android:name="com.schoolfood.ui.customize.CustomizeFragment"
+        android:label="@string/title_customize"
+        tools:layout="@layout/fragment_customize" />
 </navigation>
