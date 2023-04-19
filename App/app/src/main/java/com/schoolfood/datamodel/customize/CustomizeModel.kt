@@ -8,12 +8,14 @@ sealed class CustomizeModel {
         var name : String,
         var options : List<String>,
         var chosenOption : String,
-        var imagePath : String
+        var chosenIndex : Int = 0,
+        var imagePath : Int
     ) : CustomizeModel()
     data class Slider(
         var name : String,
         var options : List<String>,
         var chosenOption : String,
+        var chosenIndex : Int = 0,
         var imagePath : String,
         var priceOptions : List<Double>
     ) : CustomizeModel()

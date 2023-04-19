@@ -30,7 +30,7 @@
             android:layout_alignParentBottom="true"/>
 
         <ImageView
-            android:id="@+id/cover_image_subway"
+            android:id="@+id/customize_header_image"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -64,73 +64,18 @@
     </RelativeLayout>
 
 
-    <LinearLayout
-        android:id="@+id/home_layout"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/customize_recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="0dp"
+        android:layout_marginVertical="30dp"
         android:divider="@drawable/empty_tall_divider"
+        android:orientation="vertical"
         android:showDividers="middle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:orientation="vertical">
+        app:layout_constraintBottom_toTopOf="@+id/confirm"
+        app:layout_constraintTop_toBottomOf="@+id/customize_title">
 
-        <RelativeLayout
-            android:id="@+id/ham_sandwich"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_margin="5dp"
-            android:background="@drawable/layout_bg"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/lettuce_image"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginVertical="5dp"
-                android:layout_marginLeft="20dp"
-                android:adjustViewBounds="true"
-                android:contentDescription="Lettuce"
-                android:scaleType="fitCenter"
-                android:src="@drawable/lettuce" />
-
-            <TextView
-                android:id="@+id/profiler_money_text"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="4dp"
-                android:layout_toEndOf="@+id/lettuce_image"
-                android:fontFamily="sans-serif-black"
-                android:gravity="center"
-                android:text="Lettuce"
-                android:textAlignment="center"
-                android:textColor="@color/text"
-                android:textSize="30sp" />
-
-            <com.google.android.material.slider.Slider
-                android:id="@+id/lettuce_slider"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_toEndOf="@+id/lettuce_image"
-                android:layout_below="@+id/profiler_money_text"
-                app:thumbColor="@color/text"
-                app:trackColor="@color/header_bg"
-                app:tickColor="@color/text"
-                app:tickVisible="true"
-                android:valueFrom="0.0"
-                android:valueTo="3.0"
-                android:value="0.0"
-                android:stepSize="1.0"
-            />
-        </RelativeLayout>
-
-    </LinearLayout>
+    </androidx.recyclerview.widget.RecyclerView>
 
     <Button
         android:id="@+id/confirm"
