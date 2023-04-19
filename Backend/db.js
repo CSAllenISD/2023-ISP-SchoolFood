@@ -9,6 +9,8 @@ const usersSchema = new mongoose.Schema({
   name: String,
   token: String,
   email: String,
+  password: String,
+  org: String,
   balance: Number
 });
 

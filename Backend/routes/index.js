@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const { contact } = require('../db');
+const { users, contact } = require('../db');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -24,6 +24,35 @@ router.get('/order', function(req, res, next) {
 router.get('/about', function(req, res, next) {
   res.render('about', { title: 'PreOrder' });
 });
+
+router.get('/login', function(req, res, next) {
+  res.render('login', { title: 'Login', error: false, errorMsg: '' });
+});
+
+router.post('/login', async function(req, res, next) {
+  console.log("Requested POST login");
+
+  var errors = false;
+  if (!req.body.password) errors = true;
+  if (!req.body.email || !req.body.email.includes("@")) errors = true;
+
+  if( !errors ) {
+    // No errors were found.  Passed Validation!
+    console.log("No errors!");
+
+    const results = await users.find({ email: req.body.email, });
+    if (results.length != 0) {
+      // No account
+      res.render('login', { title: 'Login', error: true, errorMsg: "Account with that email and password do not exist." });
+      return;
+    }
+    
+    res.render('login', { title: 'Login', error: false, errorMsg: "" });
+  } else {
+    res.render('login', { title: 'Login', error: true, errorMsg: "Invalid Email or Password." });
+  }
+});
+
 
 router.get('/contact', function(req, res, next) {
   res.render('contact', { title: 'Contact', didSubmit: false });
