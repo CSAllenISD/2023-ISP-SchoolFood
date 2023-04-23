@@ -5,16 +5,24 @@ async function connect() {
   console.log("DB is successfully connected!")
 }
 
-const usersSchema = new mongoose.Schema({
-  name: String,
-  token: String,
-  email: String,
-  password: String,
-  org: String,
-  balance: Number
+const userSchema = new mongoose.Schema({
+  google: {
+    id: {
+      type: String,
+    },
+    name: {
+      type: String,
+    },
+    email: {
+      type: String,
+    },
+    balance: {
+      type: Number
+    }
+  },
 });
 
-const users = mongoose.model('Users', usersSchema);
+const users = mongoose.model("Users", userSchema);
 
 const contactSchema = new mongoose.Schema({
   name: String,

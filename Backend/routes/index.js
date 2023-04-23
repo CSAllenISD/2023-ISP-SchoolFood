@@ -40,7 +40,7 @@ router.post('/login', async function(req, res, next) {
     // No errors were found.  Passed Validation!
     console.log("No errors!");
 
-    const results = await users.find({ email: req.body.email, });
+    const results = await users.find({ email: req.body.email });
     if (results.length != 0) {
       // No account
       res.render('login', { title: 'Login', error: true, errorMsg: "Account with that email and password do not exist." });

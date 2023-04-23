@@ -1,20 +1,29 @@
-var express = require('express');
-var router = express.Router();
-var { users } = require('../db');
+const passport = require('passport');
+const jwt = require("jsonwebtoken");
+const express = require('express');
+const { users } = require('../db');
+const router = express.Router();
 
 /* GET users listing. */
-router.get('/', async function(req, res, next) {
-  
-  console.log("REQUESTED users/");
+router.get('/', passport.authenticate("google", { scope: ["email", "profile"] }) );
 
-  try {
-    const allUsers = await users.find();
-    res.json(allUsers)
-  } catch(err) {
-    console.error(err);
-    next(err);
-  }
-
+router.get('/callback', passport.authenticate("google", { session: false }),
+async function(req, res, next) {
+  jwt.sign(
+    { user: req.user },
+    "secretKey",
+    { expiresIn: "1h" },
+    (err, token) => {
+      if (err) {
+        return res.json({
+          token: null,
+        });
+      }
+      res.json({
+        token,
+      });
+    }
+  );
 });
 
 module.exports = router;
