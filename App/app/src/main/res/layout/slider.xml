@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginBottom="10px"
+    android:layout_width="match_parent"
+    android:layout_height="110dp">
+
+    <RelativeLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/layout_bg"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="5dp">
+
+        <ImageView
+            android:id="@+id/customize_image"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginVertical="5dp"
+            android:layout_marginLeft="20dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="Lettuce"
+            android:scaleType="fitCenter"
+            android:src="@drawable/bacon" />
+
+        <TextView
+            android:id="@+id/label"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="4dp"
+            android:layout_toEndOf="@+id/customize_image"
+            android:fontFamily="sans-serif-black"
+            android:gravity="center"
+            android:text="Bacon"
+            android:textAlignment="center"
+            android:textColor="@color/text"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/cost"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_toEndOf="@+id/customize_image"
+            android:fontFamily="sans-serif-black"
+            android:gravity="center"
+            android:text="$0.50"
+            android:layout_below="@+id/label"
+            android:textAlignment="center"
+            android:textColor="@color/text"
+            android:textSize="18sp" />
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/slider"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_below="@+id/cost"
+            android:layout_toEndOf="@+id/customize_image"
+            android:stepSize="1.0"
+            android:value="0.0"
+            android:valueFrom="0.0"
+            android:valueTo="3.0"
+            app:thumbColor="@color/text"
+            app:tickColor="@color/text"
+            app:tickVisible="true"
+            app:trackColor="@color/header_bg" />
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

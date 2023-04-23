@@ -22,16 +22,10 @@ class PreviousOrderedFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val previousOrderedViewModel =
-            ViewModelProvider(this)[PreviousOrderedViewModel::class.java]
-
         _binding = FragmentPreviousorderedBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textPrevOrdered
-        previousOrderedViewModel.text.observeForever {
-            textView.text = it
-        }
         return root
     }
 

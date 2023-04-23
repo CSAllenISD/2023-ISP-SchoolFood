@@ -16,7 +16,7 @@ sealed class CustomizeModel {
         var options : List<String>,
         var chosenOption : String,
         var chosenIndex : Int = 0,
-        var imagePath : String,
+        var imagePath : Int,
         var priceOptions : List<Double>
     ) : CustomizeModel()
 }

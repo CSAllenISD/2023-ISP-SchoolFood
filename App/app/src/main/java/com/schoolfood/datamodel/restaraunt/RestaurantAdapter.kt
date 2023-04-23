@@ -1,26 +1,26 @@
-package com.schoolfood.datamodel.customize
+package com.schoolfood.datamodel.restaraunt
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.schoolfood.MainActivity
 import com.schoolfood.R
 
-class CustomizeAdapter(activity: MainActivity) : RecyclerView.Adapter<CustomizeViewHolder>() {
+class RestaurantAdapter(fragment: Fragment, activity: MainActivity) : RecyclerView.Adapter<RestaurantViewHolder>() {
 
+    val fragment = fragment
     val context = activity
-    private val adapterData = mutableListOf<CustomizeModel>()
-    private lateinit var scoutingViewHolder: CustomizeViewHolder;
+    private val adapterData = mutableListOf<FoodModel>()
+    private lateinit var scoutingViewHolder: RestaurantViewHolder;
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): CustomizeViewHolder {
+    ): RestaurantViewHolder {
 
         val layout = when (viewType) {
-            TYPE_SLIDER_FREE -> R.layout.sliderfree
-            TYPE_SLIDER -> R.layout.slider
-            TYPE_SEPARATOR -> R.layout.separator
+            TYPE_RESTAURANT -> R.layout.dish
             else -> throw IllegalArgumentException("Invalid type")
         }
 
@@ -28,14 +28,14 @@ class CustomizeAdapter(activity: MainActivity) : RecyclerView.Adapter<CustomizeV
             .from(parent.context)
             .inflate(layout, parent, false)
 
-        scoutingViewHolder = CustomizeViewHolder(this, view)
+        scoutingViewHolder = RestaurantViewHolder(this, view)
 
         return scoutingViewHolder
     }
 
 
     override fun onBindViewHolder(
-        holder: CustomizeViewHolder,
+        holder: RestaurantViewHolder,
         position: Int
     ) {
         holder.bind(adapterData[position])
@@ -44,18 +44,14 @@ class CustomizeAdapter(activity: MainActivity) : RecyclerView.Adapter<CustomizeV
     override fun getItemCount(): Int = adapterData.size
 
     override fun getItemViewType(position: Int): Int {
-        return when (adapterData[position]) {
-            is CustomizeModel.SliderFree -> TYPE_SLIDER_FREE
-            is CustomizeModel.Slider -> TYPE_SLIDER
-            else -> TYPE_SEPARATOR
-        }
+        return TYPE_RESTAURANT
     }
 
-    fun getData(): List<CustomizeModel> {
+    fun getData(): List<FoodModel> {
         return adapterData;
     }
 
-    fun setData(data: List<CustomizeModel>) {
+    fun setData(data: List<FoodModel>) {
         adapterData.apply {
             clear()
             addAll(data)
@@ -65,8 +61,6 @@ class CustomizeAdapter(activity: MainActivity) : RecyclerView.Adapter<CustomizeV
     }
 
     companion object {
-        private const val TYPE_SLIDER_FREE = 0
-        private const val TYPE_SLIDER = 1
-        private const val TYPE_SEPARATOR = 2;
+        private const val TYPE_RESTAURANT = 0
     }
 }

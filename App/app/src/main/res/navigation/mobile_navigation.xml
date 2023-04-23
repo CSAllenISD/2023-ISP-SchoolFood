@@ -11,8 +11,12 @@
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_navigation_home_to_navigationd_subway"
-            app:destination="@id/navigationd_subway" />
+            android:id="@+id/action_navigation_home_to_navigation_subway"
+            app:destination="@id/navigation_subway">
+            <argument
+                android:name="restaurantName"
+                app:argType="string"/>
+        </action>
     </fragment>
 
     <fragment
@@ -28,13 +32,17 @@
         tools:layout="@layout/fragment_previousordered" />
 
     <fragment
-        android:id="@+id/navigationd_subway"
-        android:name="com.schoolfood.ui.restaurants.RestaurantsFragment"
+        android:id="@+id/navigation_subway"
+        android:name="com.schoolfood.ui.restaurants.RestaurantFragment"
         android:label="@string/title_subway"
-        tools:layout="@layout/fragment_resteraunt" >
+        tools:layout="@layout/fragment_restaurant" >
         <action
             android:id="@+id/action_navigationd_subway_to_navigation_customize"
-            app:destination="@id/navigation_customize" />
+            app:destination="@id/navigation_customize">
+            <argument
+                android:name="foodName"
+                app:argType="string"/>
+        </action>
     </fragment>
 
     <fragment

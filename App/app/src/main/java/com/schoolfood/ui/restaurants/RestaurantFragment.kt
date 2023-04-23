@@ -1,4 +1,4 @@
-package com.schoolfood.ui.customize
+package com.schoolfood.ui.restaurants
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,24 +12,22 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.slider.Slider
 import com.schoolfood.MainActivity
-import com.schoolfood.R
-import com.schoolfood.databinding.FragmentCustomizeBinding
-import com.schoolfood.datamodel.customize.CustomizeAdapter
-import com.schoolfood.datamodel.customize.CustomizeModel
-import com.schoolfood.sources.Customizations
+import com.schoolfood.databinding.FragmentRestaurantBinding
+import com.schoolfood.datamodel.home.RestaurantModel
+import com.schoolfood.datamodel.home.RestaurantsAdapter
+import com.schoolfood.datamodel.restaraunt.FoodModel
+import com.schoolfood.datamodel.restaraunt.RestaurantAdapter
 import com.schoolfood.sources.Foods
 import com.schoolfood.sources.Restaurants
 
-class CustomizeFragment : Fragment() {
+class RestaurantFragment : Fragment() {
 
-    private val dataAdapter: CustomizeAdapter by lazy {
-        CustomizeAdapter(activity as MainActivity)
+    private val dataAdapter: RestaurantAdapter by lazy {
+        RestaurantAdapter(this, activity as MainActivity)
     }
 
-    private var _binding: FragmentCustomizeBinding? = null
+    private var _binding: FragmentRestaurantBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -40,32 +38,32 @@ class CustomizeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCustomizeBinding.inflate(inflater, container, false)
+        _binding = FragmentRestaurantBinding.inflate(inflater, container, false)
 
-        val foodName = arguments?.getString("foodName", "None");
-        if (foodName == "None" || foodName.isNullOrEmpty()) {
+        val restaurantName = arguments?.getString("restaurantName", "None");
+        if (restaurantName == "None" || restaurantName.isNullOrEmpty()) {
             findNavController().popBackStack()
-            val toast = Toast.makeText(context, "Invalid Dish!", Toast.LENGTH_SHORT)
+            val toast = Toast.makeText(context, "Invalid Restaurant!", Toast.LENGTH_SHORT)
             toast.show()
             return binding.root
         }
-
         val headerText : TextView = binding.homeHeaderText
-        headerText.text = foodName
+        headerText.text = restaurantName
 
-        val dish = Foods.getFoods().find { it.name == foodName }
+        val restaurant = Restaurants.getRestaurants().find { it.name == restaurantName }
             ?: return binding.root
 
-        val image : ImageView = binding.customizeHeaderImage
-        image.setImageResource(dish.image)
-        image.contentDescription = "$foodName Image"
+        val image : ImageView = binding.restaurantImage
+        image.setImageResource(restaurant.image)
+        image.contentDescription = "$restaurantName Logo"
 
         val backBtn : ImageButton = binding.backBtn
         backBtn.setOnClickListener {
             findNavController().popBackStack()
         }
 
-        dataAdapter.setData(Customizations.getCustomizations(foodName))
+        val foods = Foods.getFoods().filter { it.restaurant == restaurantName }
+        dataAdapter.setData(foods)
         val mainView = binding.customizeRecyclerView;
         mainView.apply {
             layoutManager = LinearLayoutManager(context)

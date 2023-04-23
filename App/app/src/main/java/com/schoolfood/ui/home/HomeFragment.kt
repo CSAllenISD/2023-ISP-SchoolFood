@@ -1,18 +1,22 @@
 package com.schoolfood.ui.home
 
-import android.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.schoolfood.MainActivity
 import com.schoolfood.databinding.FragmentHomeBinding
-
+import com.schoolfood.datamodel.home.RestaurantsAdapter
+import com.schoolfood.sources.Restaurants
 
 class HomeFragment : Fragment() {
+
+    private val dataAdapter: RestaurantsAdapter by lazy {
+        RestaurantsAdapter(this, activity as MainActivity)
+    }
 
     private var _binding: FragmentHomeBinding? = null
 
@@ -25,15 +29,14 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this)[HomeViewModel::class.java]
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        val subwayButton = binding.homeSubway;
-        subwayButton.setOnClickListener {
-            val action = HomeFragmentDirections.actionNavigationHomeToNavigationdSubway()
-            findNavController().navigate(action)
+        dataAdapter.setData(Restaurants.getRestaurants())
+        val mainView = binding.customizeRecyclerView;
+        mainView.apply {
+            layoutManager = LinearLayoutManager(context)
+            hasFixedSize()
+            this.adapter = dataAdapter
         }
 
         return binding.root
