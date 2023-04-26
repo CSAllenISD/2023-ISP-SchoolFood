@@ -42,7 +42,7 @@
             android:text="Lettuce"
             android:textAlignment="center"
             android:textColor="@color/text"
-            android:textSize="30sp" />
+            android:textSize="22sp" />
 
         <com.google.android.material.slider.Slider
             android:id="@+id/slider"

@@ -74,8 +74,8 @@ class CustomizeViewHolder (customizeAdapter: CustomizeAdapter, itemView: View) :
 
         val cost : TextView = itemView.findViewById(R.id.cost)
         cost.text = "$" + String.format("%.2f", item.selectedPrice)
-        if(item.chosen) cost.setTextColor(Color.argb(125, 200, 200, 200))
-        else cost.setTextColor(Color.argb(255, 0, 255, 0))
+        if(item.chosen) cost.setTextColor(Color.argb(255, 17, 140, 79))
+        else cost.setTextColor(Color.argb(150, 255, 255, 255))
 
         val image : ImageView = itemView.findViewById(R.id.customize_image)
         image.setImageResource(item.imagePath)
@@ -87,8 +87,8 @@ class CustomizeViewHolder (customizeAdapter: CustomizeAdapter, itemView: View) :
             run {
                 try {
                     item.chosen = (it as Switch).isChecked
-                    if(item.chosen) cost.setTextColor(Color.argb(125, 200, 200, 200))
-                    else cost.setTextColor(Color.argb(255, 0, 255, 0))
+                    if(item.chosen) cost.setTextColor(Color.argb(255, 17, 140, 79))
+                    else cost.setTextColor(Color.argb(150, 255, 255, 255))
                 } catch (e: Exception) {}
             }
         }
