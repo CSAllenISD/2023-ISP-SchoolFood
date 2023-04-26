@@ -21,6 +21,8 @@ class CustomizeAdapter(activity: MainActivity) : RecyclerView.Adapter<CustomizeV
             TYPE_SLIDER_FREE -> R.layout.sliderfree
             TYPE_SLIDER -> R.layout.slider
             TYPE_SEPARATOR -> R.layout.separator
+            TYPE_SWITCH -> R.layout.toggle
+            TYPE_DROPDOWN_FREE -> R.layout.dropdownfree
             else -> throw IllegalArgumentException("Invalid type")
         }
 
@@ -47,6 +49,8 @@ class CustomizeAdapter(activity: MainActivity) : RecyclerView.Adapter<CustomizeV
         return when (adapterData[position]) {
             is CustomizeModel.SliderFree -> TYPE_SLIDER_FREE
             is CustomizeModel.Slider -> TYPE_SLIDER
+            is CustomizeModel.DropdownFree -> TYPE_DROPDOWN_FREE
+            is CustomizeModel.Toggle -> TYPE_SWITCH
             else -> TYPE_SEPARATOR
         }
     }
@@ -67,6 +71,8 @@ class CustomizeAdapter(activity: MainActivity) : RecyclerView.Adapter<CustomizeV
     companion object {
         private const val TYPE_SLIDER_FREE = 0
         private const val TYPE_SLIDER = 1
-        private const val TYPE_SEPARATOR = 2;
+        private const val TYPE_SEPARATOR = 2
+        private const val TYPE_SWITCH = 3
+        private const val TYPE_DROPDOWN_FREE = 4
     }
 }

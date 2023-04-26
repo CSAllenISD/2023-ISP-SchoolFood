@@ -9,7 +9,7 @@
     <RelativeLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="10dp"
         android:layout_margin="5dp"
         android:background="@drawable/layout_bg"
         app:layout_constraintTop_toTopOf="parent"
@@ -22,7 +22,7 @@
         android:layout_width="40dp"
         android:layout_height="30dp"
         android:layout_margin="5dp"
-        android:background="@drawable/rounded_background"
+        android:background="@drawable/arrows_down"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
