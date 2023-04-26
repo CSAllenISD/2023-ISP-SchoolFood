@@ -19,7 +19,7 @@ class RestaurantViewHolder (restaurantAdapter: RestaurantAdapter, itemView: View
         label.text = dataModel.name
 
         val costLabel : TextView = itemView.findViewById(R.id.dish_cost)
-        costLabel.text = "$" + dataModel.price
+        costLabel.text = "$" + String.format("%.2f", dataModel.price)
 
         val image : ImageView = itemView.findViewById(R.id.dish_image)
         image.setImageResource(dataModel.image)

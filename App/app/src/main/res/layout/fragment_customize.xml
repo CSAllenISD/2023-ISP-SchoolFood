@@ -68,11 +68,12 @@
         android:id="@+id/customize_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginVertical="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="60dp"
         android:divider="@drawable/empty_tall_divider"
         android:orientation="vertical"
         android:showDividers="middle"
-        app:layout_constraintBottom_toTopOf="@+id/confirm"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/customize_title">
 
     </androidx.recyclerview.widget.RecyclerView>
@@ -87,6 +88,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="70dp"
     />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
