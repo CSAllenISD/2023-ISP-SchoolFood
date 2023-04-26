@@ -19,4 +19,16 @@ sealed class CustomizeModel {
         var imagePath : Int,
         var priceOptions : List<Double>
     ) : CustomizeModel()
+    data class Toggle(
+        var name : String,
+        var chosen : Boolean = false,
+        var selectedPrice : Double,
+        var imagePath : Int
+    ) : CustomizeModel()
+    data class DropdownFree (
+        var name : String,
+        var options : List<String>,
+        var imagePaths : List<Int>,
+        var chosenIndex : Int = 0
+    ) : CustomizeModel()
 }
