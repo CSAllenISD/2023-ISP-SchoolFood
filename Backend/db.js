@@ -5,24 +5,34 @@ async function connect() {
   console.log("DB is successfully connected!")
 }
 
-const userSchema = new mongoose.Schema({
-  google: {
-    id: {
-      type: String,
-    },
-    name: {
-      type: String,
-    },
-    email: {
-      type: String,
-    },
-    balance: {
-      type: Number
-    }
-  },
+const passportLocalMongoose = require('passport-local-mongoose');
+const findOrCreate = require('mongoose-findorcreate');
+
+const User = new mongoose.Schema({
+      name: String,
+      email: {
+        type: String,
+        lowercase: true,
+        unique: true,
+        required: [true, "can't be blank"],
+        match: [/\S+@\S+\.\S+/, 'is invalid'],
+        index: true,
+      },
+      balance: Number,
+      password: {
+        type: String,
+        trim: true,
+        minlength: 6,
+        maxlength: 60,
+      },
+      token: {
+        type: String,
+        unique: true
+      }
 });
 
-const users = mongoose.model("Users", userSchema);
+User.plugin(findOrCreate);
+User.plugin(passportLocalMongoose);
 
 const contactSchema = new mongoose.Schema({
   name: String,
@@ -35,6 +45,6 @@ const contact = mongoose.model('Contact', contactSchema);
 
 module.exports = {
   connect: connect,
-  users: users,
+  User: mongoose.model('User', User),
   contact: contact
 };

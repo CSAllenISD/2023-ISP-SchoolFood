@@ -1,17 +1,20 @@
 const cookieParser = require('cookie-parser');
 const createError = require('http-errors');
-const jwt = require("jsonwebtoken")
-const express = require('express');
 const logger = require('morgan');
 const path = require('path');
-require("dotenv").config()
+const express = require("express");
+const bodyParser = require("body-parser");
+const passport = require('passport');
+const mongoose = require("mongoose");
+const googleAuth = require("./routes/authentication");
+const jwt = require('jsonwebtoken');
 
-const passport = require("passport");
-require("./passportConfig")(passport);
+require("./controllers/controller.tokenJWT");
+require("dotenv/config");
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
 const adminRouter = require('./routes/admin');
+const dashboardRouter = require('./routes/dashboard');
 
 const app = express();
 
@@ -25,8 +28,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.route('/getDetails', passport.authenticate('jwt_strategy', { session: false }), (req, res)=>{
+  console.log(req.user);
+});
+
 app.use('/', indexRouter);
-app.use('/auth/google', usersRouter);
+app.use("/auth", googleAuth);
+app.use('/dashboard', dashboardRouter);
 app.use('/admin', adminRouter);
 
 // catch 404 and forward to error handler
@@ -39,6 +47,8 @@ app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  console.error(err);
 
   // render the error page
   res.status(err.status || 500);

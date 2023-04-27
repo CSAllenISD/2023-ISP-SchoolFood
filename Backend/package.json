@@ -15,10 +15,13 @@
     "jsonwebtoken": "^9.0.0",
     "mongodb": "^5.1.0",
     "mongoose": "^7.0.3",
+    "mongoose-findorcreate": "^4.0.0",
     "morgan": "~1.9.1",
     "passport": "^0.6.0",
+    "passport-google-oauth": "^2.0.0",
     "passport-google-oauth2": "^0.2.0",
-    "passport-jwt": "^4.0.1"
+    "passport-jwt": "^4.0.1",
+    "passport-local-mongoose": "^8.0.0"
   },
   "description": "1. Install node version 17 (I use https://github.com/nvm-sh/nvm) 2. Run `npm install --save` (inside the Backend folder) ## Run 1. Run `npm start`",
   "main": "app.js",
