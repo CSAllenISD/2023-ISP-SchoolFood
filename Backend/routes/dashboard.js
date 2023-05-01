@@ -4,7 +4,7 @@ const router = express.Router();
 require('../controllers/controller.auth');
 require('dotenv/config');
 const passport = require('passport');
-const { User } = require('../db.js');
+const { sequelize, User } = require('../db.js');
 
 router.get('/', (req, res) => {
   const token = req.cookies['jwt'];
@@ -17,12 +17,18 @@ router.get('/', (req, res) => {
         console.log(err.message);
         res.redirect('/auth/google');
       } else {
-        console.log(`User ID: ${decodedToken.id}`);
+        console.log(`User: ${decodedToken}`);
         try {
-          const user = await User.findById(decodedToken.id);
-          console.log(`User: ${user}`)
+          sequelize.sync().then(async () => {
+                const user = await User.findOne({
+                  where: {
+                    email: decodedToken.email
+                  }
+                });
+              console.log(`User: ${user}`)
 
-          res.render('dashboard', { title: "Dashboard", error: false, errorMsg: '', user: user });
+            res.render('dashboard', { title: "Dashboard", error: false, errorMsg: '', user: user });
+          });
         }
         catch (err) {
           console.log(err.message);

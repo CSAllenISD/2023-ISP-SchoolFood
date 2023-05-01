@@ -15,8 +15,6 @@ const passportConfig = {
     "passReqToCallback"   : true
 }
 
-passport.use(User.createStrategy());
-
 passport.use(
     new GoogleStrategy(
       passportConfig,

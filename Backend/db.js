@@ -1,50 +1,64 @@
-const mongoose = require('mongoose');
+const { Sequelize, DataTypes } = require('sequelize');
+var sequelize = new Sequelize(
+  process.env["MYSQL_DB_NAME"],
+  process.env["MYSQL_USER"],
+  process.env["MYSQL_PASSWORD"],
+  {
+    host: 'db',
+    dialect: 'mysql',
+  }
+);
 
 async function connect() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/schoolFood');
+  await sequelize.authenticate(); 
   console.log("DB is successfully connected!")
 }
 
-const passportLocalMongoose = require('passport-local-mongoose');
-const findOrCreate = require('mongoose-findorcreate');
-
-const User = new mongoose.Schema({
-      name: String,
-      email: {
-        type: String,
-        lowercase: true,
-        unique: true,
-        required: [true, "can't be blank"],
-        match: [/\S+@\S+\.\S+/, 'is invalid'],
-        index: true,
+const User = sequelize.define("users", {
+      name: {
+        type: DataTypes.STRING
       },
-      balance: Number,
+      email: {
+        type: DataTypes.STRING,
+        unique: true,
+        allowNull: false
+      },
+      balance: {
+        type: DataTypes.NUMBER
+      },
       password: {
-        type: String,
-        trim: true,
-        minlength: 6,
-        maxlength: 60,
+        type: DataTypes.STRING
       },
       token: {
-        type: String,
+        type: DataTypes.STRING,
         unique: true
       }
 });
 
-User.plugin(findOrCreate);
-User.plugin(passportLocalMongoose);
-
-const contactSchema = new mongoose.Schema({
-  name: String,
-  email: String,
-  subject: String,
-  content: String
+sequelize.sync().then(() => {
+  console.log('Users table created successfully!');
+}).catch((error) => {
+  console.error('Unable to create table : ', error);
 });
 
-const contact = mongoose.model('Contact', contactSchema);
+const Contact = sequelize.define("contact", {
+  name: {
+    type: DataTypes.STRING
+  },
+  email: {
+    type: DataTypes.STRING
+  },
+  subject: {
+    type: DataTypes.STRING
+  },
+  content: {
+    type: DataTypes.STRING
+  }
+});
 
 module.exports = {
+  sequelize: sequelize,
   connect: connect,
-  User: mongoose.model('User', User),
-  contact: contact
+  User: User,
+  contact: Contact
 };

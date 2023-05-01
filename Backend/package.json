@@ -13,15 +13,13 @@
     "http-errors": "~1.6.3",
     "jade": "^0.29.0",
     "jsonwebtoken": "^9.0.0",
-    "mongodb": "^5.1.0",
-    "mongoose": "^7.0.3",
-    "mongoose-findorcreate": "^4.0.0",
     "morgan": "~1.9.1",
+    "mysql2": "^3.2.4",
     "passport": "^0.6.0",
     "passport-google-oauth": "^2.0.0",
     "passport-google-oauth2": "^0.2.0",
     "passport-jwt": "^4.0.1",
-    "passport-local-mongoose": "^8.0.0"
+    "sequelize": "^6.31.1"
   },
   "description": "1. Install node version 17 (I use https://github.com/nvm-sh/nvm) 2. Run `npm install --save` (inside the Backend folder) ## Run 1. Run `npm start`",
   "main": "app.js",

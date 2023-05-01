@@ -5,7 +5,6 @@ const path = require('path');
 const express = require("express");
 const bodyParser = require("body-parser");
 const passport = require('passport');
-const mongoose = require("mongoose");
 const googleAuth = require("./routes/authentication");
 const jwt = require('jsonwebtoken');
 
