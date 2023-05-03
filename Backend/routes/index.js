@@ -41,8 +41,8 @@ router.post('/login', async function(req, res, next) {
     console.log("No errors!");
 
     sequelize.sync().then(async () => {
-      const results = await User.findOne({where: { email: req.body.email, password: req.body.password }});
-      if (results.length != 0) {
+      const result = await User.findOne({where: { email: req.body.email, password: req.body.password }});
+      if (!result) {
         // No account
         res.render('login', { title: 'Login', error: true, errorMsg: "Account with that email and password do not exist." });
         return;
@@ -71,8 +71,8 @@ router.post('/contact', async function(req, res, next) {
     // No errors were found.  Passed Validation!
     console.log("No errors!");
     sequelize.sync().then(async () => {
-      const results = await contact.findOne({ where: { name: req.body.name, email: req.body.email, subject: req.body.subject, content: req.body.content }});
-      if (results.length) {
+      const result = await contact.findOne({ where: { name: req.body.name, email: req.body.email, subject: req.body.subject, content: req.body.content }});
+      if (result) {
         // Already submitted!
         res.render('contact', { title: 'Contact', didSubmit: false });
         return;
