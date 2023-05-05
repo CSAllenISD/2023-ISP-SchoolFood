@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -19,9 +20,12 @@ import com.schoolfood.R
 import com.schoolfood.databinding.FragmentCustomizeBinding
 import com.schoolfood.datamodel.customize.CustomizeAdapter
 import com.schoolfood.datamodel.customize.CustomizeModel
+import com.schoolfood.datamodel.restaraunt.FoodModel
 import com.schoolfood.sources.Customizations
 import com.schoolfood.sources.Foods
 import com.schoolfood.sources.Restaurants
+import java.io.File
+import java.util.*
 
 class CustomizeFragment : Fragment() {
 
@@ -62,6 +66,46 @@ class CustomizeFragment : Fragment() {
 
         val backBtn : ImageButton = binding.backBtn
         backBtn.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
+        val addToCartBtn : Button = binding.confirm
+        addToCartBtn.setOnClickListener {
+            var price = dish.price.toDouble()
+            var customizations = ""
+            dataAdapter.getData().forEach {
+                when (it) {
+                    is CustomizeModel.Toggle -> {
+                        if(it.chosen) {
+                            price += it.selectedPrice
+                            customizations += it.name + ":1,"
+                        }
+                    }
+                    is CustomizeModel.Slider -> {
+                        price += it.priceOptions[it.chosenIndex]
+                        customizations += it.name + ":" + it.chosenOption + ","
+                    }
+                    is CustomizeModel.DropdownFree -> {
+                        customizations += it.name + ":" + it.options[it.chosenIndex] + ","
+                    }
+                    is CustomizeModel.SliderFree -> {
+                        customizations += it.name + ":" + it.chosenOption + ","
+                    }
+                    else -> {}
+                }
+            }
+            customizations = customizations.dropLast(1)
+
+            val path = context?.filesDir
+            val file = File(path, "cart.txt")
+            if (!file.exists()) file.createNewFile()
+            var foodID = UUID.randomUUID()
+            file.appendText("$foodID,$foodName,$price,$customizations\n")
+
+
+            Toast.makeText(context,
+                "Added $foodName to your Cart!", Toast.LENGTH_LONG).show()
+
             findNavController().popBackStack()
         }
 
