@@ -1,4 +1,6 @@
 const { Sequelize, DataTypes } = require('sequelize');
+require("dotenv/config")
+
 var sequelize = new Sequelize(
   process.env["MYSQL_DB_NAME"],
   process.env["MYSQL_USER"],
@@ -24,7 +26,7 @@ const User = sequelize.define("users", {
         allowNull: false
       },
       balance: {
-        type: DataTypes.NUMBER
+        type: DataTypes.FLOAT
       },
       password: {
         type: DataTypes.STRING

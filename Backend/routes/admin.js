@@ -17,7 +17,7 @@ router.get('/', function(req, res, next) {
 router.get('/contact', async function(req, res, next) {
   
   try {
-    const allContact = await contact.find();
+    const allContact = await contact.findAll();
     res.json(allContact)
   } catch(err) {
     console.error(err);
