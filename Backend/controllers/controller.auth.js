@@ -18,14 +18,12 @@ const passportConfig = {
 passport.use(
     new GoogleStrategy(
       passportConfig,
-      function (request, accessToken, refreshToken, profile, done) {
-        User.findOrCreate(
-          { email: profile._json.email },
-          { name: profile.displayName, email: profile._json.email},
-          function (err, user) {
-            return done(err, user);
-          }
-        );
+      async function (request, accessToken, refreshToken, profile, done) {
+        const [user, created] = await User.findOrCreate({
+          where: { email: profile._json.email },
+          defaults: { name: profile.displayName, email: profile._json.email},
+        });
+        return done(created ? null : Error("Failed"), user);
       }
     )
 );

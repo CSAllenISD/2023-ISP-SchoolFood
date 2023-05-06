@@ -6,33 +6,40 @@ require('dotenv/config');
 const passport = require('passport');
 const { sequelize, User } = require('../db.js');
 
+const baseFrontendUrl = process.env["MAIN_URL"];
+
 router.get('/', (req, res) => {
   const token = req.cookies['jwt'];
   console.log(`User TOKEN: ${token}`);
   if (!token) {
-    res.redirect('/auth/google');
+    res.redirect(`${baseFrontendUrl}/auth/google`);
   } else {
     jwt.verify(token, process.env["JWT_SECRET_KEY"], async (err, decodedToken) => {
-      if (err || !decodedToken.id) {
-        console.log(err.message);
-        res.redirect('/auth/google');
+      if (err || !decodedToken?.user?.email) {
+        if (err) console.error(err);
+        else console.log(decodedToken)
+        res.redirect(`${baseFrontendUrl}/auth/google`);
       } else {
-        console.log(`User: ${decodedToken}`);
+        console.log(`Decoded: ${decodedToken}`);
         try {
           sequelize.sync().then(async () => {
-                const user = await User.findOne({
-                  where: {
-                    email: decodedToken.email
-                  }
-                });
-              console.log(`User: ${user}`)
+            const user = await User.findOne({
+              where: {
+                email: decodedToken.user.email
+              }
+            }, { raw: true });
+            if (!user) {
+              res.redirect(`${baseFrontendUrl}/auth/google`);
+              return;
+            }
 
+            console.log(`User: ${user}`)
             res.render('dashboard', { title: "Dashboard", error: false, errorMsg: '', user: user });
           });
         }
         catch (err) {
           console.log(err.message);
-          res.redirect('/auth/google');
+          res.redirect(`${baseFrontendUrl}/auth/google`);
         }
       }
     });

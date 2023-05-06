@@ -31,26 +31,16 @@ html.no-js(lang='en')
           .container-sm
             .pricing-inner.section-inner
               .pricing-tables-wrap
-                form.pricing-table.contact-table(method='post', action='login')
+                form.pricing-table.contact-table(onsubmit='return false;')
                   .pricing-table-inner.is-revealing
                     .pricing-table-main
                       .pricing-table-header.pb-24
                         .pricing-table-price
-                          span.pricing-table-price-amount.h1 Login
+                          span.pricing-table-price-amount.h1 Dashboard
                       | 
-                      .pricing-table-features-title.text-xs.pt-24.pb-24#errorDiv(style='display: none;') Please give valid information!
-                      |                                         
-                      ul.pricing-table-features.list-reset.text-xs
-                        li
-                          p Email:
-                          input(type="email", name="email")
-                        |                                             
-                        li
-                          p Password:
-                          input(type="password", name="password")
-                    |                                     
-                    .pricing-table-cta.mb-8
-                      input.button.button-primary.button-shadow.button-block(type='submit', value='Log In')
+                      .pricing-table-features-title.text-xs.pt-24.pb-24#errorDiv(style='display: none;') Welcome #{user.name}
+                      |
+                      .pricing-table-features-title.text-xs.pt-24.pb-24#errorDiv(style='display: none;') Balance: $#{user.balance}
       |         
       footer.site-footer
         .container
@@ -90,6 +80,3 @@ html.no-js(lang='en')
             .footer-copyright &copy; 2023 SchoolFood, all rights reserved
     |     
     script(src='js/main.js')
-    script. 
-        document.querySelector("#errorDiv").style.display = "block";
-        document.querySelector("#errorDiv").innerText = "#{user}";
