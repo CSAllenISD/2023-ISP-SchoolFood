@@ -26,7 +26,8 @@ const User = sequelize.define("users", {
         allowNull: false
       },
       balance: {
-        type: DataTypes.FLOAT
+        type: DataTypes.FLOAT,
+        defaultValue: 0.0
       },
       password: {
         type: DataTypes.STRING

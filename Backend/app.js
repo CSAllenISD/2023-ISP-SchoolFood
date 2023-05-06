@@ -11,6 +11,7 @@ const jwt = require('jsonwebtoken');
 require("./controllers/controller.tokenJWT");
 require("dotenv/config");
 
+const apiRouter = require('./routes/api');
 const indexRouter = require('./routes/index');
 const adminRouter = require('./routes/admin');
 const dashboardRouter = require('./routes/dashboard');
@@ -32,6 +33,7 @@ app.route('/getDetails', passport.authenticate('jwt_strategy', { session: false 
 });
 
 app.use('/', indexRouter);
+app.use("/api", apiRouter);
 app.use("/auth", googleAuth);
 app.use('/dashboard', dashboardRouter);
 app.use('/admin', adminRouter);

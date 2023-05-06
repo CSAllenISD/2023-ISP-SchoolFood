@@ -38,9 +38,8 @@ html.no-js(lang='en')
                         .pricing-table-price
                           span.pricing-table-price-amount.h1 Dashboard
                       | 
-                      .pricing-table-features-title.text-xs.pt-24.pb-24#errorDiv(style='display: none;') Welcome #{user.name}
-                      |
-                      .pricing-table-features-title.text-xs.pt-24.pb-24#errorDiv(style='display: none;') Balance: $#{user.balance}
+                      .pricing-table-features-title.text-xs.pt-24.pb-24 Welcome #{user.name}
+                      .pricing-table-features-title.text-xs.pt-24.pb-24 Balance: $#{user.balance || 0.00}
       |         
       footer.site-footer
         .container
