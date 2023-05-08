@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const { sequelize, contact, User } = require('../db');
+const { sequelize, contact, User, Order } = require('../db');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -39,5 +39,20 @@ router.get('/users', async function(req, res, next) {
   }
 
 });
+
+router.get('/orders', async function(req, res, next) {
+  
+  try {
+    sequelize.sync().then(async () => {
+	const allOrders = await Order.findAll();
+	res.json(allOrders);
+    });
+  } catch(err) {
+    console.error(err);
+    next(err);
+  }
+
+});
+
 
 module.exports = router;

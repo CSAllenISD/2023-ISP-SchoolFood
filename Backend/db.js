@@ -59,9 +59,34 @@ const Contact = sequelize.define("contact", {
   }
 });
 
+sequelize.sync().then(() => {
+  console.log('Contact table created successfully!');
+}).catch((error) => {
+  console.error('Unable to create table : ', error);
+});
+
+const Order = sequelize.define("orders", {
+    student: {
+	type: DataTypes.STRING
+    },
+    order: {
+	type: DataTypes.STRING
+    },
+    price: {
+	type: DataTypes.FLOAT
+    }
+});
+
+sequelize.sync().then(() => {
+  console.log('Orders table created successfully!');
+}).catch((error) => {
+  console.error('Unable to create table : ', error);
+});
+
 module.exports = {
-  sequelize: sequelize,
-  connect: connect,
-  User: User,
-  contact: Contact
+    sequelize: sequelize,
+    connect: connect,
+    User: User,
+    Order: Order,
+    contact: Contact
 };
