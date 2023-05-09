@@ -7,10 +7,10 @@ const passport = require('passport');
 const { sequelize, User } = require('../db.js');
 
 function apiAuth(req, res) {
-  const token = req.cookies['jwt'];
+  const token = req.header('Authorization').replace('Bearer ', '')
   console.log(`User TOKEN: ${token}`);
   if (!token) {
-    res.status(500).send({ error: true, msg: 'No token found' });
+    res.status(401).send({ error: true, msg: 'No token found' });
   } else {
     jwt.verify(token, process.env["JWT_SECRET_KEY"], async (err, decodedToken) => {
       if (err || !decodedToken?.user?.email) {
@@ -49,6 +49,10 @@ router.post('/balance', (req, res) => {
 
 router.post('/purchase', (req, res) => {
   const user = apiAuth(req, res);
+  if (!user) return;
+
+  console.log(req.params.order);
+
   res.send({ error: false, value: user.balance });
 });
 

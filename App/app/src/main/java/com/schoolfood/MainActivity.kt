@@ -9,6 +9,7 @@ import androidx.navigation.ui.NavigationUI.onNavDestinationSelected
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationBarView
+import com.schoolfood.api.GetBalance
 import com.schoolfood.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -25,5 +26,8 @@ class MainActivity : AppCompatActivity() {
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         navView.setupWithNavController(navController)
+
+        val threadWithRunnable = Thread(GetBalance(this))
+        threadWithRunnable.start()
     }
 }
