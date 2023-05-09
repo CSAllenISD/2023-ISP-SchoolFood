@@ -42,7 +42,7 @@ const customizations = [
     new customizationModel("Mayonnaise", ["None", "Light", "Regular", "Extra"], [0, 0, 0, 0]),
     new customizationModel("Honey Mustard", ["None", "Light", "Regular", "Extra"], [0, 0, 0, 0]),
     new customizationModel("Smoky BBQ", ["None", "Light", "Regular", "Extra"], [0, 0, 0, 0]),
-    new customizationModel("Extra Meat", [false, true], [0, 1.50]),
+    new customizationModel("Extra Meat", [0, 1], [0, 1.50]),
     new customizationModel("Bacon", ["None", "One", "Two"], [0, 0.65, 1.30])
 ]
 

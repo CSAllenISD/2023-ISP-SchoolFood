@@ -70,7 +70,7 @@ const Order = sequelize.define("orders", {
 	type: DataTypes.STRING
     },
     order: {
-	type: DataTypes.STRING
+	type: DataTypes.TEXT('long')
     },
     price: {
 	type: DataTypes.FLOAT

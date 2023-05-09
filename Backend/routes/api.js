@@ -8,41 +8,41 @@ const { sequelize, User, Order } = require('../db.js');
 const { findOrderPrice } = require("../orderUtil.js")
 
 async function apiAuth(req, res) {
-    const token = req.header('Authorization').replace('Bearer ', '')
+    const token = `${req.headers.authorization}`.replace('Bearer ', '')
     console.log(`User TOKEN: ${token}`);
     return new Promise(resolve => {
 	if (!token) {
-	    res.status(401).send({ error: true, msg: 'No token found' });
-	    resolve(null);
-	} else {
-	    jwt.verify(token, process.env["JWT_SECRET_KEY"], async (err, decodedToken) => {
-		if (err || !decodedToken?.user?.email) {
-		    res.status(500).send({ error: true, msg: 'Invalid token' });
-		    resolve(null);
-		} 
-		try {
-		    await sequelize.sync()
-		    const user = await User.findOne({
-			where: {
-			    email: decodedToken.user.email,
-			    token: token
-			}
-		    }, { raw: true });
-		    if (!user) {
-			res.send({ error: true, msg: 'Invalid user' });
-			resolve(null);
-		    }
-
-		    console.log(`User: ${user}`)
-		    resolve(user);
-		}
-		catch (err) {
-		    console.error(err);
-		    res.status(500).send({ error: true, msg: err.message });
-		    resolve(null)
-		}
-	    });
+	    res.status(403).send({ error: true, msg: 'No token found' });
+	    return resolve(null);
 	}
+	
+	jwt.verify(token, process.env["JWT_SECRET_KEY"], async (err, decodedToken) => {
+	    if (err || !decodedToken?.user?.email) {
+		res.status(403).send({ error: true, msg: 'Invalid token' });
+		return resolve(null);
+	    } 
+	    try {
+		await sequelize.sync()
+		const user = await User.findOne({
+		    where: {
+			email: decodedToken.user.email,
+			token: token
+		    }
+		}, { raw: true });
+		if (!user) {
+		    res.send({ error: true, msg: 'Invalid user' });
+		    return resolve(null);
+		}
+
+		console.log(`User: ${user}`)
+		return resolve(user);
+	    }
+	    catch (err) {
+		console.error(err);
+		res.status(403).send({ error: true, msg: err.message });
+		return resolve(null)
+	    }
+	});
     });
 }
 
@@ -57,12 +57,10 @@ router.post('/balance', async (req, res) => {
 router.post('/purchase', async (req, res) => {
     const user = await apiAuth(req, res);
     if (!user) return;
-
-    const params = req.body;
     
-    const order = params?.order
+    const order = req.body
     if (!order) {
-	res.status(500).send({ error: true, msg: "No order provided." });
+	res.send({ error: true, msg: "No order provided." });
 	return;
     }
 
@@ -71,12 +69,12 @@ router.post('/purchase', async (req, res) => {
     if (isNaN(price)) {
 	console.log(order);
 	console.log(price);
-	res.status(500).send({ error: true, msg: "Invalid Price! Contact Staff." });
+	res.send({ error: true, msg: "Invalid Price! Contact Staff." });
 	return;
     }
 
     if(price > user.balance) {
-	res.status(500).send({ error: true, msg: "Not enough balance" });
+	res.send({ error: true, msg: "Not enough balance" });
 	return;
     }
 
