@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/signIn">
+        app:layout_constraintBottom_toTopOf="@+id/signInBtn">
 
         <TextView
             android:id="@+id/appName"
@@ -47,17 +47,16 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
-        android:id="@+id/signIn"
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/signInBtn"
         android:layout_width="200dp"
         android:layout_height="70dp"
-        android:text="Sign-In with Google"
         android:fontFamily="sans-serif-medium"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
-
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+    />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
