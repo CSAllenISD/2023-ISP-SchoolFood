@@ -44,8 +44,9 @@ router.get('/orders', async function(req, res, next) {
   
   try {
     sequelize.sync().then(async () => {
-	const allOrders = await Order.findAll();
-	res.json(allOrders);
+      const allOrders = await Order.findAll();
+      // res.json(allOrders);
+      res.render("display", { title: "Orders" })
     });
   } catch(err) {
     console.error(err);
