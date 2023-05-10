@@ -11,9 +11,9 @@ html.no-js(lang='en')
     |     
     link(href='https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600', rel='stylesheet')
     |     
-    link(rel='stylesheet', href='stylesheets/style.css')
+    link(rel='stylesheet', href='../stylesheets/style.css')
     | 
-    link(href='images/logo.png', rel='icon')
+    link(href='../images/logo.png', rel='icon')
     |     
     script(src='https://unpkg.com/animejs@3.0.1/lib/anime.min.js')
     |     
@@ -25,57 +25,53 @@ html.no-js(lang='en')
           .site-header-inner
             .brand.header-brand
               h1.m-0
-                a(href='./')
-                  img.header-logo-image(src='images/logo.png', width='64', height='64', style="border-radius: 50%;", alt='Logo')
-      
-      div.side-popup
-        h1.popup-icon ✓
-        h1.popup-title #{title} 
-        img.popup-footer(src='images/logo.png', alt='Logo', width='70', height='70')
+                a(href='../')
+                  img.header-logo-image(src='../images/logo.png', width='64', height='64', style="border-radius: 50%;", alt='Logo')
       main
-        section.hero
-          .container
-              .hero-figure.anime-element
-                svg.placeholder(width='528', height='396', viewBox='0 0 528 396')
-                  rect(width='528', height='396', style='fill:transparent;')
-                | 
-                .hero-figure-box.hero-figure-box-01(data-rotation='45deg')
-                | 
-                .hero-figure-box.hero-figure-box-02(data-rotation='-45deg')
-                | 
-                .hero-figure-box.hero-figure-box-03(data-rotation='0deg')
-                | 
-                .hero-figure-box.hero-figure-box-04(data-rotation='-135deg')
-                | 
-                .hero-figure-box.hero-figure-box-05
-                | 
-                .hero-figure-box.hero-figure-box-06
-                | 
-                .hero-figure-box.hero-figure-box-07
-                | 
-                .hero-figure-box.hero-figure-box-08(data-rotation='-22deg')
-                | 
-                .hero-figure-box.hero-figure-box-09(data-rotation='-52deg')
-                | 
-                .hero-figure-box.hero-figure-box-10(data-rotation='-50deg')
-        | 
-        section.display
+        section.pricing.section#preorder
+          .container-sm
+            .pricing-inner.section-inner
+              .pricing-tables-wrap
+                form.pricing-table.contact-table(onsubmit='return false;')
+                  .pricing-table-inner.is-revealing
+                    .pricing-table-main
+                      .pricing-table-header.pb-24
+                        .pricing-table-price
+                          span.pricing-table-price-amount.h1 #{title}
+                      table#table
       footer.site-footer
         .container
           .site-footer-inner
             .brand.footer-brand
-              a(href='./')
-                img.header-logo-image(src='images/logo.png', width='48', height='48', style="border-radius: 50%;", alt='Logo')            |                     
+              a(href='../')
+                img.header-logo-image(src='../images/logo.png', width='48', height='48', style="border-radius: 50%;", alt='Logo')            |                     
             ul.footer-links.list-reset
               li
-                a(href='./') Home
+                a(href='../') Home
               li
-                a(href='preorder') Preorder                           
+                a(href='../preorder') Preorder                           
               li
-                a(href='contact') Contact us
+                a(href='../contact') Contact us
               li
-                a(href='about') About us
+                a(href='../about') About us
             |                                  
             .footer-copyright &copy; 2023 SchoolFood, all rights reserved
     |     
-    script(src='js/main.js')
+    script(src='../js/main.js')
+    script(type="text/javascript")
+      const data = `!{data}`
+      function populateTable() {
+        const tableEle = document.getElementById("table")
+        JSON.parse(data.replace(/\n/g, "\\n")).forEach(row => {
+          const rowEle = document.createElement("tr");
+          row.forEach(cell => {
+            const cellEle = document.createElement("td");
+            cellEle.innerText = cell;
+            rowEle.appendChild(cellEle);
+          });
+          tableEle.appendChild(rowEle);
+        });
+      };
+      if (!data) {
+        console.log("No Data!")
+      } else populateTable();
